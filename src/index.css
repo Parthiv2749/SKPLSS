@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-[#FDF8F3] text-[#292929] font-[Poppins] px-[8.4rem];
+}
 
 /* body {
   margin: 0;

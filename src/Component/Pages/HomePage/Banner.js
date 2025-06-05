@@ -1,6 +1,6 @@
 import React from 'react';
-import banner from '../../../../assets/banner.png';
+import banner from '../../../assets/banner.png';
 
 export default function Banner() {
-  return <img className="banner" src={banner} alt="Web Banner" style={{ width: '100%', borderRadius: '20px' }} />;
+  return <img src={banner} alt="Web Banner" className="w-full rounded-2xl my-8 object-cover"/>;
 }

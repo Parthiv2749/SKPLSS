@@ -8,24 +8,25 @@ const events = [
 
 export default function Events() {
   return (
-    <section className="section">
-      <h2>Upcoming Events</h2>
-      <div className="events">
-        {events.map((event, i) => (
-          <div className="event-card" key={i}>
-            <div className="event-date">
-              <div>{event.month}</div>
-              <div>{event.day}</div>
+        <section className="text-center w-full mb-20">
+        <h2 className="text-2xl font-semibold mb-4">Upcoming Events</h2>
+        <div className="flex flex-col items-center gap-4 w-full">
+            {events.map((event, index) => (
+            <div key={index} className="flex items-center bg-white p-6 rounded-2xl w-[95%] shadow-md max-w-4xl">
+                <div className="bg-[#F48F0F] text-white px-4 py-2 rounded-lg text-center w-16">
+                <div>{event.month}</div>
+                <div>{event.day}</div>
+                </div>
+                <div className="text-left ml-20">
+                <strong className="block text-lg">Event name goes here</strong>
+                <p className="text-sm">Event description or details would be displayed here (max 2 lines)</p>
+                </div>
             </div>
-            <div className="text">
-              <strong>Event name goes here</strong>
-              <p>Event description or details would be displayed here (max 2 lines)</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button className="btn-primary" style={{ marginTop: '1rem' }}>View All Events</button>
-    </section>
+            ))}
+        </div>
+        <button className="bg-[#F48F0F] text-[#292929] py-2 px-4 rounded-full font-semibold mt-4">View All Events</button>
+        </section>
+
   );
 }
 
