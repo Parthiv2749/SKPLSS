@@ -8,6 +8,7 @@ function RouteMmgmt(){
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<HomePage />} />
+            
         </Routes>
     </BrowserRouter>    
     );
