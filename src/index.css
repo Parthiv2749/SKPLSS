@@ -4,9 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+/* body {
   @apply px-4 sm:px-8 md:px-[8.4rem] bg-[#FDF8F3] text-[#292929] font-[Poppins];
-}
+} */
 
 
 /* body {
