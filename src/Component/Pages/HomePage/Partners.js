@@ -2,22 +2,29 @@ import React from 'react';
 import sponsor1 from '../../../assets/sponsor.png';
 import sponsor2 from '../../../assets/sponsor2.png';
 
+const sponsors = [sponsor1, sponsor2, sponsor1, sponsor2, sponsor1, sponsor2, sponsor1, sponsor2];
+
 export default function Partners() {
   return (
-      <section className="text-center px-[5vw] mb-20">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">Our Partners</h2>
-        <div className="flex justify-center flex-wrap gap-4">
-          {[1, 2, 3, 4, 5].map(i => (
+    <section className="text-center px-[5vw] mb-20 overflow-hidden">
+        <h2 className="text-[clamp(1.75rem,6vw,3rem)] font-extrabold text-[#292929] tracking-tight mb-16 relative inline-block">
+        Our <span className="text-[#F48F0F]">Partners</span>
+        <span className="absolute left-0 bottom-0 w-full h-1 bg-[#F48F0F] rounded-full animate-pulse opacity-60"></span>
+        </h2>
+
+      {/* Scrolling row */}
+      <div className="relative w-full ">
+        <div className="flex gap-6 animate-scroll whitespace-nowrap">
+          {sponsors.concat(sponsors).map((img, i) => (
             <img
               key={i}
-              src={i % 2 === 0 ? sponsor1 : sponsor2}
-              alt={`Sponsor ${i}`}
-              className="w-[40vw] max-w-[200px]"
+              src={img}
+              alt={`Sponsor ${i + 1}`}
+              className="w-[40vw] max-w-[160px] h-auto object-contain"
             />
           ))}
         </div>
-      </section>
-
-
+      </div>
+    </section>
   );
 }
