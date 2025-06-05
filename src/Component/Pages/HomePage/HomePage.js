@@ -1,11 +1,15 @@
-
-
+import Navbar from "../../UI/Navbar/Navbar"
+import Footer from "../../UI/Footer/Footer";
+import Banner from "./Banner";
+import Events from "./Events";
 function HomePage(){
 
     return(
-        <h1>Home 
-         Page
-        </h1>
+        <>
+            <Navbar/>
+
+            <Footer/>
+        </>
     );
 }
 
