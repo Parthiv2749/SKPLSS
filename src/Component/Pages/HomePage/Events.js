@@ -8,18 +8,18 @@ const events = [
 
 export default function Events() {
   return (
-        <section className="text-center w-full mb-20">
-        <h2 className="text-2xl font-semibold mb-4">Upcoming Events</h2>
-        <div className="flex flex-col items-center gap-4 w-full">
+        <section className="text-center w-full mb-16 px-4">
+        <h2 className="text-xl md:text-2xl font-semibold mb-6">Upcoming Events</h2>
+        <div className="flex flex-col gap-4 w-full">
             {events.map((event, index) => (
-            <div key={index} className="flex items-center bg-white p-6 rounded-2xl w-[95%] shadow-md max-w-4xl">
-                <div className="bg-[#F48F0F] text-white px-4 py-2 rounded-lg text-center w-16">
+            <div key={index} className="flex flex-col sm:flex-row items-start sm:items-center bg-white p-4 sm:p-6 rounded-2xl shadow-md w-full">
+                <div className="bg-[#F48F0F] text-white px-4 py-2 rounded-lg text-center w-16 mb-2 sm:mb-0 sm:mr-6">
                 <div>{event.month}</div>
                 <div>{event.day}</div>
                 </div>
-                <div className="text-left ml-20">
+                <div className="text-left sm:ml-6">
                 <strong className="block text-lg">Event name goes here</strong>
-                <p className="text-sm">Event description or details would be displayed here (max 2 lines)</p>
+                <p className="text-sm">Event description or details would be displayed here</p>
                 </div>
             </div>
             ))}

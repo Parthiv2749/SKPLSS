@@ -5,8 +5,9 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#FDF8F3] text-[#292929] font-[Poppins] px-[8.4rem];
+  @apply px-4 sm:px-8 md:px-[8.4rem] bg-[#FDF8F3] text-[#292929] font-[Poppins];
 }
+
 
 /* body {
   margin: 0;
