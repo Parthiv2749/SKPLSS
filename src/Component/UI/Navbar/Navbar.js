@@ -32,10 +32,10 @@ function Navbar() {
             isMenuOpen ? 'flex flex-col items-center mt-4' : 'hidden'
           } md:flex-row md:mt-0 md:gap-6 text-[clamp(0.95rem,2vw,1.1rem)] font-medium tracking-wide`}
         >
-          <a href="#" className="text-[#f48f0f] px-2 hover:underline underline-offset-4">
+          <a href="/" className="text-[#f48f0f] px-2 hover:underline underline-offset-4">
             Home
           </a>
-          <a href="#" className="text-[#292929] px-2 hover:underline underline-offset-4">
+          <a href="/aboutAs" className="text-[#292929] px-2 hover:underline underline-offset-4">
             About
           </a>
           <a href="#" className="text-[#292929] px-2 hover:underline underline-offset-4">
