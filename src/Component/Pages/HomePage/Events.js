@@ -35,10 +35,11 @@ export default function Events() {
           </div>
         ))}
       </div>
-
-      <button className="mt-10 bg-[#F48F0F] text-[#292929] py-3 px-7 rounded-full font-bold tracking-wide text-[clamp(1rem,1.8vw,1.15rem)] uppercase shadow-md hover:shadow-lg transition duration-300 ease-in-out w-full sm:w-auto max-w-xs mx-auto">
-        View All Events
-      </button>
+        <a href='/events'>
+            <button className="mt-10 bg-[#F48F0F] text-[#292929] py-3 px-7 rounded-full font-bold tracking-wide text-[clamp(1rem,1.8vw,1.15rem)] uppercase shadow-md hover:shadow-lg transition duration-300 ease-in-out w-full sm:w-auto max-w-xs mx-auto">
+                View All Events
+            </button>
+        </a> 
     </section>
   );
 }
