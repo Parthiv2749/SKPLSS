@@ -38,7 +38,7 @@ function Navbar() {
           <a href="/aboutAs" className="text-[#292929] px-2 hover:underline underline-offset-4">
             About
           </a>
-          <a href="#" className="text-[#292929] px-2 hover:underline underline-offset-4">
+          <a href="/Gallery" className="text-[#292929] px-2 hover:underline underline-offset-4">
             Gallery
           </a>
           <a href="#" className="text-[#292929] px-2 hover:underline underline-offset-4">
