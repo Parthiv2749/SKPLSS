@@ -1,21 +1,29 @@
-import { Routes, Route,  BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import HomePage from '../../Component/Pages/HomePage/HomePage'
+import HomePage from "../../Component/Pages/HomePage/HomePage";
 import AboutAs from "../../Component/Pages/AboutAs/AboutAs";
 import EventsSection from "../../Component/Pages/Event/Event";
 import Gallary from "../../Component/Pages/Gallary/Gallary";
-function RouteMmgmt(){
+import Dashboard from "../../Component/Admin/Dashboard";
+import Login from "../../Component/Admin/Login";
+import Event from "../../Component/Admin/ManageEvents";
 
-    return  (
+
+function RouteMmgmt() {
+  return (
     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/aboutAs" element={<AboutAs/>} />
-            <Route path="/events" element={<EventsSection/>}/>
-            <Route path="/Gallery" element={<Gallary/>}/>
-        </Routes>
-    </BrowserRouter>    
-    );
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/aboutAs" element={<AboutAs />} />
+        <Route path="/events" element={<EventsSection />} />
+        <Route path="/Gallery" element={<Gallary />} />
+
+        <Route path="/AdminLogin" element={<Login />} />
+        <Route path="/Admin" element={<Dashboard />} />
+        <Route path="/Admin/events" element={<Event />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default RouteMmgmt
+export default RouteMmgmt;
