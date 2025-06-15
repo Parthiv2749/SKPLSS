@@ -2,7 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../UI/Footer/Footer';
 import events from '../../../assets/eventsarray';
-
+import Back from '../../UI/Back_button/Back';
+import LoadingSpinner from '../../UI/LoadingSpiner/LoadingSpinner';
 
 const statusClasses = {
   upcoming: 'bg-blue-100 text-blue-500',
@@ -35,32 +36,7 @@ function getPageNumbers(currentPage, totalPages) {
   return pages;
 }
 
-const LoadingSpinner = () => (
-  <div className="flex justify-center my-20" aria-label="Loading">
-    <svg
-      className="animate-spin h-8 w-8 text-orange-500"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      role="img"
-      aria-hidden="true"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      ></path>
-    </svg>
-  </div>
-);
+
 
 const EventsPage = () => {
   const navigate = useNavigate();
@@ -120,14 +96,7 @@ const EventsPage = () => {
   return (
     <>
       <div className="bg-white text-gray-800 font-sans min-h-screen mb-12">
-        <div className="p-6">
-          <button
-            className="border rounded-full px-4 py-1 text-sm hover:bg-gray-100 transition"
-            onClick={() => navigate(-1)}
-          >
-            ⬅ Back To Home
-          </button>
-        </div>
+        <Back />
 
         <section className="text-center px-4 max-w-7xl mx-auto">
           <h2 className="text-4xl font-bold mb-2">Our Events</h2>

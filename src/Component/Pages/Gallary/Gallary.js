@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "../../UI/Navbar/Navbar";
 import Footer from "../../UI/Footer/Footer";
 import events from "../../../assets/eventsarray";
+import LoadingSpinner from "../../UI/LoadingSpiner/LoadingSpinner";
 
 function Gallary() {
   const [categoryFilter, setCategoryFilter] = useState("All");
@@ -72,7 +73,7 @@ function Gallary() {
         </div>
 
         {loading ? (
-          <div className="text-center py-20 text-gray-500">Loading...</div>
+            <LoadingSpinner />
         ) : (
           <div
             className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500 ${

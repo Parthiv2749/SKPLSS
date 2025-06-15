@@ -12,7 +12,7 @@ const events = [
     status: "completed",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -24,7 +24,7 @@ const events = [
     status: "completed",
     type: "Youth",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -36,7 +36,7 @@ const events = [
     status: "completed",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -48,7 +48,7 @@ const events = [
     status: "upcoming",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -60,7 +60,7 @@ const events = [
     status: "upcoming",
     type: "Youth",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -72,7 +72,7 @@ const events = [
     status: "upcoming",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -83,7 +83,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -95,7 +95,7 @@ const events = [
     status: "upcoming",
     type: "Events",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -107,7 +107,7 @@ const events = [
     status: "ongoing",
     type: "Events",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -118,7 +118,7 @@ const events = [
     status: "upcoming",
     type: "Com_service",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -130,7 +130,7 @@ const events = [
     status: "upcoming",
     type: "Youth",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -142,7 +142,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -154,7 +154,7 @@ const events = [
     status: "completed",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -165,7 +165,7 @@ const events = [
     status: "ongoing",
     type: "other",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -177,7 +177,7 @@ const events = [
     status: "upcoming",
     type: "Events",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -189,7 +189,7 @@ const events = [
     status: "upcoming",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -200,7 +200,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -211,7 +211,7 @@ const events = [
     status: "ongoing",
     type: "Youth",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -222,7 +222,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -234,7 +234,7 @@ const events = [
     status: "ongoing",
     type: "Youth",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -246,7 +246,7 @@ const events = [
     status: "completed",
     type: "Cultural",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -258,7 +258,7 @@ const events = [
     status: "completed",
     type: "Events",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -269,7 +269,7 @@ const events = [
     status: "upcoming",
     type: "other",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -281,7 +281,7 @@ const events = [
     status: "completed",
     type: "Youth",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -292,7 +292,7 @@ const events = [
     status: "upcoming",
     type: "Events",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -304,7 +304,7 @@ const events = [
     status: "upcoming",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -316,7 +316,7 @@ const events = [
     status: "completed",
     type: "other",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -327,7 +327,7 @@ const events = [
     status: "ongoing",
     type: "Events",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -339,7 +339,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -351,7 +351,7 @@ const events = [
     status: "completed",
     type: "Youth",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -362,7 +362,7 @@ const events = [
     status: "upcoming",
     type: "Youth",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -373,7 +373,7 @@ const events = [
     status: "completed",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -385,7 +385,7 @@ const events = [
     status: "ongoing",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -396,7 +396,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -407,7 +407,7 @@ const events = [
     status: "completed",
     type: "Youth",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -419,7 +419,7 @@ const events = [
     status: "ongoing",
     type: "Com_service",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -430,7 +430,7 @@ const events = [
     status: "upcoming",
     type: "Events",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -441,7 +441,7 @@ const events = [
     status: "completed",
     type: "Youth",
     image: img1,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -452,7 +452,7 @@ const events = [
     status: "upcoming",
     type: "Cultural",
     image: img3,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
   {
@@ -463,7 +463,7 @@ const events = [
     status: "ongoing",
     type: "Events",
     image: img2,
-    FolderPath: "gallery/navratri/",
+    FolderPath: "/gallery/navratri/",
     photoCount: 6,
   },
 ];

@@ -27,10 +27,10 @@ function Footer() {
         <div className="min-w-[200px]">
           <h4 className="text-[1.1rem] font-semibold mb-3 tracking-wide">Useful Links</h4>
           <ul className="space-y-1 text-[#555]">
-            <li><a href="#" className="hover:text-[#F48F0F] transition">Home</a></li>
-            <li><a href="#" className="hover:text-[#F48F0F] transition">About Us</a></li>
-            <li><a href="#" className="hover:text-[#F48F0F] transition">Education</a></li>
-            <li><a href="#" className="hover:text-[#F48F0F] transition">Contact Us</a></li>
+            <li><a href="/" className="hover:text-[#F48F0F] transition">Home</a></li>
+            <li><a href="/AboutUs" className="hover:text-[#F48F0F] transition">About Us</a></li>
+            <li><a href="/Education" className="hover:text-[#F48F0F] transition">Education</a></li>
+            
           </ul>
         </div>
 
@@ -75,7 +75,7 @@ function Footer() {
 
       {/* Copyright */}
       <div className="text-center text-xs text-[#777] mt-4 tracking-wide">
-        © {new Date().getFullYear()} Your Organization Name. All rights reserved.
+        © {new Date().getFullYear()} SKLPSS Name. All rights reserved.
       </div>
     </footer>
   );

@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+#### Preventing Errors at deployment
+
+
+# ->install lightbox to show full sized image in gallery
+cmd:-> yarn add react-image-lightbox
+
+# install lucide-react to use icons in sidebar of admin panel
+cmd:-> yarn add lucide-react

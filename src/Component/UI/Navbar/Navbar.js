@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import logo from '../../../assets/logo.png';
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import logo from "../../../assets/logo.png";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <header className="bg-[#FDF8F3] border-b border-[#E1D5C9] p-4 font-sans">
@@ -29,26 +32,57 @@ function Navbar() {
         {/* Nav Links */}
         <nav
           className={`w-full md:flex md:flex-1 md:justify-center md:items-center ${
-            isMenuOpen ? 'flex flex-col items-center mt-4' : 'hidden'
+            isMenuOpen ? "flex flex-col items-center mt-4" : "hidden"
           } md:flex-row md:mt-0 md:gap-6 text-[clamp(0.95rem,2vw,1.1rem)] font-medium tracking-wide`}
         >
-          <a href="/" className="text-[#f48f0f] px-2 hover:underline underline-offset-4">
+          <Link
+            to="/"
+            className={`px-2 hover:underline underline-offset-4 rounded-md py-1 ${
+              location.pathname === "/"
+                ? "text-[#F48F0F] font-semibold"
+                : "text-[#292929]"
+            }`}
+          >
             Home
-          </a>
-          <a href="/aboutAs" className="text-[#292929] px-2 hover:underline underline-offset-4">
+          </Link>
+
+          <Link
+            to="/aboutUs"
+            className={`px-2 hover:underline underline-offset-4 rounded-md py-1 ${
+              location.pathname === "/aboutUs"
+                ? "text-[#F48F0F] font-semibold"
+                : "text-[#292929]"
+            }`}
+          >
             About
-          </a>
-          <a href="/Gallery" className="text-[#292929] px-2 hover:underline underline-offset-4">
+          </Link>
+
+          <Link
+            to="/Gallery"
+            className={`px-2 hover:underline underline-offset-4 rounded-md py-1 ${
+              location.pathname === "/Gallery"
+                ? "text-[#F48F0F] font-semibold"
+                : "text-[#292929]"
+            }`}
+          >
             Gallery
-          </a>
-          <a href="#" className="text-[#292929] px-2 hover:underline underline-offset-4">
+          </Link>
+
+          <Link
+            to="/Education"
+            className={`px-2 hover:underline underline-offset-4 rounded-md py-1 ${
+              location.pathname === "/Education"
+                ? "text-[#F48F0F] font-semibold"
+                : "text-[#292929]"
+            }`}
+          >
             Education
-          </a>
+          </Link>
         </nav>
 
         {/* Button */}
         <div className="hidden md:block md:ml-auto">
-          <button className="bg-[#F48F0F] text-[#292929] px-5 py-2 rounded-full font-semibold text-[clamp(1rem,2vw,1.05rem)] uppercase tracking-wider shadow hover:brightness-110 transition-all duration-200">
+          <button onClick={() => navigate("/Membership")} className="bg-[#F48F0F] text-[#292929] px-5 py-2 rounded-full font-semibold text-[clamp(1rem,2vw,1.05rem)] uppercase tracking-wider shadow hover:brightness-110 transition-all duration-200">
             Become a member
           </button>
         </div>
@@ -56,7 +90,7 @@ function Navbar() {
         {/* Mobile Button */}
         {isMenuOpen && (
           <div className="w-full flex justify-center mt-4 md:hidden">
-            <button className="bg-[#F48F0F] text-[#292929] px-5 py-2 rounded-full font-semibold text-[clamp(0.9rem,2vw,1rem)] uppercase tracking-wide shadow hover:brightness-110 transition-all duration-200">
+            <button onClick={() => navigate("/Membership")} className="bg-[#F48F0F] text-[#292929] px-5 py-2 rounded-full font-semibold text-[clamp(0.9rem,2vw,1rem)] uppercase tracking-wide shadow hover:brightness-110 transition-all duration-200">
               Become a member
             </button>
           </div>
