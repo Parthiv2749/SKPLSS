@@ -9,6 +9,7 @@ import Login from "../../Component/Admin/Login";
 import Event from "../../Component/Admin/ManageEvents";
 import Managegallery from "../../Component/Admin/Managegallery";
 import ManageMembers from "../../Component/Admin/ManageMembers";
+import GalleryEvent from "../../Component/Pages/Gallary/GalleryEvent";
 
 
 function RouteMmgmt() {
@@ -19,6 +20,8 @@ function RouteMmgmt() {
         <Route path="/aboutAs" element={<AboutAs />} />
         <Route path="/events" element={<EventsSection />} />
         <Route path="/Gallery" element={<Gallary />} />
+        <Route path="/Gallery/:Id/:eventName" element={<GalleryEvent />} />
+
 
         <Route path="/AdminLogin" element={<Login />} />
         <Route path="/Admin" element={<Dashboard />} />
