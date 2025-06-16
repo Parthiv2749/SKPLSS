@@ -2,14 +2,14 @@ import img1 from "../assets/charity_walk.png";
 import img2 from "../assets/cook-off.png";
 import img3 from "../assets/talent.png";
 
-const events = [
+let events = [
   {
     event_id: 1,
     title: "Annual Blood Donation Camp",
     description:
       "Join hands to save lives at our annual community blood donation drive.",
     date: "April 5, 2025",
-    status: "completed",
+    status: "Past",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -21,7 +21,7 @@ const events = [
     description:
       "Empowering young minds with leadership skills and mentorship.",
     date: "May 10, 2025",
-    status: "completed",
+    status: "Past",
     type: "Youth",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -33,7 +33,7 @@ const events = [
     description:
       "Experience music, dance, and cuisine from our rich cultural heritage.",
     date: "March 22, 2025",
-    status: "completed",
+    status: "Past",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -45,7 +45,7 @@ const events = [
     description:
       "Plant trees with us and help make our surroundings greener and cleaner.",
     date: "June 18, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -57,7 +57,7 @@ const events = [
     description:
       "A wellness session promoting mental and physical well-being for youth.",
     date: "July 8, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Youth",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -69,7 +69,7 @@ const events = [
     description:
       "Join our mission to keep our neighborhoods clean and beautiful.",
     date: "August 1, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -80,7 +80,7 @@ const events = [
     title: "Garba Night",
     description: "Celebrate Navratri with joyful dancing and colorful attire.",
     date: "October 4, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -92,7 +92,7 @@ const events = [
     description:
       "Showcase your culinary skills in our fun and friendly cook-off.",
     date: "July 19, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Events",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -104,7 +104,7 @@ const events = [
     description:
       "Join teams and compete in a series of friendly sports tournaments.",
     date: "May 30, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Events",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -115,7 +115,7 @@ const events = [
     title: "Senior Appreciation Day",
     description: "A heartfelt tribute to the elders who guide our community.",
     date: "June 20, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Com_service",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -127,7 +127,7 @@ const events = [
     description:
       "Boost confidence with real-time speeches and positive feedback.",
     date: "June 25, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Youth",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -139,7 +139,7 @@ const events = [
     description:
       "Celebrate the harvest festival with pookalam, songs, and traditional food.",
     date: "August 25, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -151,7 +151,7 @@ const events = [
     description:
       "Let’s talk about mental health and break the stigma together.",
     date: "April 17, 2025",
-    status: "completed",
+    status: "Past",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -162,7 +162,7 @@ const events = [
     title: "Photography Workshop",
     description: "Learn to capture stunning moments with your camera or phone.",
     date: "May 12, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "other",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -174,7 +174,7 @@ const events = [
     description:
       "A relaxing day filled with games, food, and bonding for families.",
     date: "June 2, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Events",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -186,7 +186,7 @@ const events = [
     description:
       "A session to guide and welcome new volunteers into our cause.",
     date: "June 9, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -197,7 +197,7 @@ const events = [
     title: "Independence Day Parade",
     description: "Celebrate freedom with music, flags, and community pride.",
     date: "August 15, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -208,7 +208,7 @@ const events = [
     title: "Chess Tournament",
     description: "Compete with the best minds in our community’s chess battle.",
     date: "June 30, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Youth",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -219,7 +219,7 @@ const events = [
     title: "Raksha Bandhan Celebration",
     description: "Celebrating sibling bonds with joy, sweets, and rituals.",
     date: "August 10, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -231,7 +231,7 @@ const events = [
     description:
       "Helping students prepare job-ready CVs and LinkedIn profiles.",
     date: "June 24, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Youth",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -243,7 +243,7 @@ const events = [
     description:
       "Local talent performs classical, folk, and modern dance styles.",
     date: "May 5, 2025",
-    status: "completed",
+    status: "Past",
     type: "Cultural",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -255,7 +255,7 @@ const events = [
     description:
       "Important announcements and discussions about community growth.",
     date: "April 30, 2025",
-    status: "completed",
+    status: "Past",
     type: "Events",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -266,7 +266,7 @@ const events = [
     title: "Plant-Based Cooking Demo",
     description: "Explore tasty, healthy vegetarian dishes with expert chefs.",
     date: "July 3, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "other",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -278,7 +278,7 @@ const events = [
     description:
       "A platform for young artists to express and compete creatively.",
     date: "May 18, 2025",
-    status: "completed",
+    status: "Past",
     type: "Youth",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -289,7 +289,7 @@ const events = [
     title: "Night under the Stars",
     description: "Join us for music, movies, and stargazing at the beach.",
     date: "June 21, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Events",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -301,7 +301,7 @@ const events = [
     description:
       "Doctors on-site offering free basic health screenings for all.",
     date: "July 12, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -313,7 +313,7 @@ const events = [
     description:
       "Turn everyday items into beautiful crafts – fun for all ages!",
     date: "May 15, 2025",
-    status: "completed",
+    status: "Past",
     type: "other",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -324,7 +324,7 @@ const events = [
     title: "Bollywood Quiz Night",
     description: "Test your Bollywood knowledge and win exciting prizes.",
     date: "June 14, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Events",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -336,7 +336,7 @@ const events = [
     description:
       "Play forgotten traditional Indian games in this joyful gathering.",
     date: "July 5, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -348,7 +348,7 @@ const events = [
     description:
       "Interactive session on digital responsibility and cyber safety.",
     date: "May 20, 2025",
-    status: "completed",
+    status: "Past",
     type: "Youth",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -359,7 +359,7 @@ const events = [
     title: "Monsoon Trekking",
     description: "Adventure through nature’s beauty during the monsoon season.",
     date: "August 2, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Youth",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -370,7 +370,7 @@ const events = [
     title: "Sankranti Celebration",
     description: "Fly kites and share sweets to mark the harvest season.",
     date: "January 14, 2025",
-    status: "completed",
+    status: "Past",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -382,7 +382,7 @@ const events = [
     description:
       "Train for fire, earthquake, and flood emergencies effectively.",
     date: "June 28, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -393,7 +393,7 @@ const events = [
     title: "Folk Music Night",
     description: "Celebrate regional roots with live folk music performances.",
     date: "August 22, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -404,7 +404,7 @@ const events = [
     title: "Resume Review Booth",
     description: "One-on-one resume help from industry professionals.",
     date: "May 22, 2025",
-    status: "completed",
+    status: "Past",
     type: "Youth",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -416,7 +416,7 @@ const events = [
     description:
       "Fitness, diet, and mindfulness sessions for women of all ages.",
     date: "June 16, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Com_service",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -427,7 +427,7 @@ const events = [
     title: "Local Startup Fair",
     description: "Showcase of innovative startups by local entrepreneurs.",
     date: "July 29, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Events",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -438,7 +438,7 @@ const events = [
     title: "Financial Literacy for Youth",
     description: "Basics of budgeting, saving, and investing for teenagers.",
     date: "May 25, 2025",
-    status: "completed",
+    status: "Past",
     type: "Youth",
     image: img1,
     FolderPath: "/gallery/navratri/",
@@ -449,7 +449,7 @@ const events = [
     title: "Interfaith Harmony Panel",
     description: "Open dialogue fostering mutual understanding and respect.",
     date: "August 18, 2025",
-    status: "upcoming",
+    status: "Upcoming",
     type: "Cultural",
     image: img3,
     FolderPath: "/gallery/navratri/",
@@ -460,7 +460,7 @@ const events = [
     title: "Community Talent Show",
     description: "Sing, dance, act – share your talent on stage!",
     date: "June 27, 2025",
-    status: "ongoing",
+    status: "Ongoing",
     type: "Events",
     image: img2,
     FolderPath: "/gallery/navratri/",
@@ -468,4 +468,31 @@ const events = [
   },
 ];
 
-export default events;
+const updateEventStatuses = (events) => {
+  const updatedEvents = events.map((event) => {
+    const fromDate = new Date(event.date);
+    const toDate = new Date(fromDate);
+    toDate.setDate(toDate.getDate() + 1); // 1-day duration
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize time
+
+    let status = "Upcoming";
+    if (today > toDate) {
+      status = "Past";
+    } else if (today >= fromDate && today <= toDate) {
+      status = "Ongoing";
+    }
+
+    return {
+      ...event,
+      fromDate: fromDate.toISOString().split("T")[0],
+      toDate: toDate.toISOString().split("T")[0],
+      status,
+    };
+  });
+
+  return updatedEvents;
+};
+
+export default updateEventStatuses(events);

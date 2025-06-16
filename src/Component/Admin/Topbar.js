@@ -19,7 +19,7 @@ const Topbar = () => {
   };
 
   return (
-    <header className="bg-[#FDF8F3] border-b border-[#E1D5C9] p-4 font-poppins">
+    <header className="bg-[#FDF8F3] border-b border-[#E1D5C9] px-4 py-1 font-poppins">
       <div className="flex items-center justify-between flex-wrap md:flex-nowrap">
         {/* Left: Logo + Title */}
         <div className="flex items-center flex-wrap gap-0 md:gap-4">

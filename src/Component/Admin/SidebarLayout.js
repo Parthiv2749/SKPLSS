@@ -60,7 +60,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Home />}
               label="Dashboard"
-              to="/admin"
+              to="/Admin"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}
@@ -68,7 +68,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Calendar />}
               label="Events"
-              to="/admin/events"
+              to="/Admin/events"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}
@@ -76,7 +76,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Image />}
               label="Gallery"
-              to="/admin/gallery"
+              to="/Admin/gallery"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}
@@ -84,7 +84,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Users />}
               label="Members"
-              to="/admin/members"
+              to="/Admin/members"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}

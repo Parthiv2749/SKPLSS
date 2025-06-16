@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { FaSearch, FaEdit, FaTrash, FaFilter, FaCog } from "react-icons/fa";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  FaSearch,
+  FaEdit,
+  FaTrash,
+  FaFilter,
+  FaCog,
+} from "react-icons/fa";
 import SidebarLayout from "./SidebarLayout";
 import CustomTable from "./reusable/CustomTable";
 import events from "../../assets/eventsarray";
 
 const ManageEvents = () => {
-  const [Events] = useState(events);
+  const navigate = useNavigate();
+  const [eventData, setEventData] = useState(events);
   const [searchTerm, setSearchTerm] = useState("");
-  const [visibleColumns, setVisibleColumns] = useState({
+  const [visibleCols, setVisibleCols] = useState({
     title: true,
     date: true,
     type: true,
@@ -23,42 +31,71 @@ const ManageEvents = () => {
     toDate: "",
   });
 
-  const filteredEvents = Events.filter((event) => {
-    const matchTitle = event.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+  const [deleteId, setDeleteId] = useState(null);
+  const settingsRef = useRef();
+  const filtersRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        showSettings &&
+        settingsRef.current &&
+        !settingsRef.current.contains(e.target)
+      ) {
+        setShowSettings(false);
+      }
+      if (
+        showFilters &&
+        filtersRef.current &&
+        !filtersRef.current.contains(e.target)
+      ) {
+        setShowFilters(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showSettings, showFilters]);
+
+  const confirmDelete = (id) => setDeleteId(id);
+  const cancelDelete = () => setDeleteId(null);
+
+  const handleDeleteConfirmed = () => {
+    setEventData((prev) => prev.filter((e) => e.event_id !== deleteId));
+    setDeleteId(null);
+  };
+
+  const filteredEvents = eventData.filter((event) => {
+    const matchTitle = event.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchStatus = filters.status ? event.status === filters.status : true;
     const matchType = filters.type ? event.type === filters.type : true;
 
     const eventDate = new Date(event.date);
-    const fromDate = filters.fromDate ? new Date(filters.fromDate) : null;
-    const toDate = filters.toDate ? new Date(filters.toDate) : null;
-
-    const matchDate =
-      (!fromDate || eventDate >= fromDate) && (!toDate || eventDate <= toDate);
+    const from = filters.fromDate ? new Date(filters.fromDate) : null;
+    const to = filters.toDate ? new Date(filters.toDate) : null;
+    const matchDate = (!from || eventDate >= from) && (!to || eventDate <= to);
 
     return matchTitle && matchStatus && matchType && matchDate;
   });
 
-  // Get unique options
   const statusOptions = [...new Set(events.map((e) => e.status))];
   const typeOptions = [...new Set(events.map((e) => e.type))];
-  const dateOptions = [...new Set(events.map((e) => e.date))];
 
   return (
     <SidebarLayout>
-      <div className="w-full bg-[#FDF8F3] p-6">
+      <div className="w-full bg-[#FDF8F3] p-6 relative">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold">Event Management</h1>
-          <button className="bg-[#F48F0F] text-white md:px-4 px-2 py-1 md:py-2 rounded-xl hover:opacity-90">
+          <button
+            onClick={() => navigate(`/Admin/Schedule-Event/${events.length + 1}`)}
+            className="bg-[#F48F0F] text-white md:px-4 px-2 py-2 rounded-xl hover:opacity-90"
+          >
             Schedule a new event
           </button>
         </div>
 
-        {/* Search + Icons */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 relative">
-          {/* Search Input */}
-          <div className="flex items-center bg-white rounded-full px-4 py-2 w-full sm:max-w-md border border-gray-300">
+        {/* Search and Icon Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+          <div className="flex items-center bg-white rounded-full px-4 py-2 border border-gray-300 w-full sm:max-w-md">
             <FaSearch className="text-gray-400 mr-2" />
             <input
               type="text"
@@ -69,77 +106,54 @@ const ManageEvents = () => {
             />
           </div>
 
-          {/* Icons */}
-          <div className="flex items-center gap-4 self-end sm:self-auto">
-            <div className="relative">
+          <div className="flex gap-4 self-end sm:self-auto">
+            {/* Filter */}
+            <div className="relative" ref={filtersRef}>
               <FaFilter
-                className="text-[#F48F0F] cursor-pointer text-xl  hover:opacity-70"
-                onClick={() => setShowFilters(!showFilters)}
+                className="text-[#F48F0F] text-xl cursor-pointer hover:opacity-70"
+                onClick={() => setShowFilters((prev) => !prev)}
               />
               {showFilters && (
-                <div className="absolute top-10 right-0 w-72 max-w-[90vw] bg-white shadow-lg rounded-md p-4 z-20 border border-gray-200 flex flex-col gap-4">
-                  {/* Status Filter */}
-                  <div className="flex flex-col">
-                    <label className="block text-sm font-medium mb-1">
-                      Status
-                    </label>
+                <div className="absolute top-10 right-0 bg-white shadow-lg rounded-md p-4 z-20 w-72 max-w-[90vw] border border-gray-200 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Status</label>
                     <select
-                      className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                      className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.status}
-                      onChange={(e) =>
-                        setFilters({ ...filters, status: e.target.value })
-                      }
+                      onChange={(e) => setFilters({ ...filters, status: e.target.value })}
                     >
                       <option value="">All</option>
-                      {statusOptions.map((status, i) => (
-                        <option key={i} value={status}>
-                          {status}
-                        </option>
+                      {statusOptions.map((s, i) => (
+                        <option key={i} value={s}>{s}</option>
                       ))}
                     </select>
                   </div>
-
-                  {/* Date Range Filter */}
-                  <div className="flex flex-col">
-                    <label className="block text-sm font-medium mb-1">
-                      Date Range
-                    </label>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Date Range</label>
                     <input
                       type="date"
-                      className="border border-gray-300 rounded px-2 py-1 text-sm mb-2"
-                      value={filters.fromDate || ""}
-                      onChange={(e) =>
-                        setFilters({ ...filters, fromDate: e.target.value })
-                      }
+                      className="w-full border px-2 py-1 rounded text-sm mb-1"
+                      value={filters.fromDate}
+                      onChange={(e) => setFilters({ ...filters, fromDate: e.target.value })}
                     />
-                    <h2 className="text-center">to</h2>
+                    <h2 className="text-center text-sm">to</h2>
                     <input
                       type="date"
-                      className="border border-gray-300 rounded px-2 py-1 text-sm"
-                      value={filters.toDate || ""}
-                      onChange={(e) =>
-                        setFilters({ ...filters, toDate: e.target.value })
-                      }
+                      className="w-full border px-2 py-1 rounded text-sm"
+                      value={filters.toDate}
+                      onChange={(e) => setFilters({ ...filters, toDate: e.target.value })}
                     />
                   </div>
-
-                  {/* Type Filter */}
-                  <div className="flex flex-col">
-                    <label className="block text-sm font-medium mb-1">
-                      Category
-                    </label>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Category</label>
                     <select
-                      className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                      className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.type}
-                      onChange={(e) =>
-                        setFilters({ ...filters, type: e.target.value })
-                      }
+                      onChange={(e) => setFilters({ ...filters, type: e.target.value })}
                     >
                       <option value="">All</option>
-                      {typeOptions.map((type, i) => (
-                        <option key={i} value={type}>
-                          {type}
-                        </option>
+                      {typeOptions.map((t, i) => (
+                        <option key={i} value={t}>{t}</option>
                       ))}
                     </select>
                   </div>
@@ -147,28 +161,25 @@ const ManageEvents = () => {
               )}
             </div>
 
-            {/* Settings Icon */}
-            <div className="relative">
+            {/* Column Settings */}
+            <div className="relative" ref={settingsRef}>
               <FaCog
-                className="text-[#F48F0F] cursor-pointer text-xl hover:opacity-70"
-                onClick={() => setShowSettings(!showSettings)}
+                className="text-[#F48F0F] text-xl cursor-pointer hover:opacity-70"
+                onClick={() => setShowSettings((prev) => !prev)}
               />
               {showSettings && (
-                <div className="absolute top-8 right-0 bg-white shadow-lg rounded-md p-4 z-20 border border-gray-200">
-                  {Object.keys(visibleColumns).map((col) => (
-                    <label key={col} className="block text-sm mb-2">
+                <div className="absolute top-10 right-0 bg-white shadow-lg rounded-md p-4 z-20 border border-gray-200">
+                  {Object.keys(visibleCols).map((key) => (
+                    <label key={key} className="block text-sm mb-2">
                       <input
                         type="checkbox"
-                        checked={visibleColumns[col]}
+                        checked={visibleCols[key]}
                         onChange={() =>
-                          setVisibleColumns({
-                            ...visibleColumns,
-                            [col]: !visibleColumns[col],
-                          })
+                          setVisibleCols({ ...visibleCols, [key]: !visibleCols[key] })
                         }
                         className="mr-2"
                       />
-                      Show {col.charAt(0).toUpperCase() + col.slice(1)}
+                      Show {key.charAt(0).toUpperCase() + key.slice(1)}
                     </label>
                   ))}
                 </div>
@@ -177,37 +188,55 @@ const ManageEvents = () => {
           </div>
         </div>
 
-        {/* Table */}
+        {/* Event Table */}
         <CustomTable
           cols={[
-            {
-              key: "title",
-              label: "Event Name",
-            },
-            {
-              key: "date",
-              label: "Date",
-            },
-            {
-              key: "type",
-              label: "Category",
-            },
-            {
-              key: "status",
-              label: "Status",
-            },
+            { key: "title", label: "Event Name" },
+            { key: "date", label: "Date" },
+            { key: "type", label: "Category" },
+            { key: "status", label: "Status" },
           ]}
           rows={filteredEvents.map((event) => ({
             ...event,
             actions: (
               <>
-                <FaEdit className="text-[#F48F0F] cursor-pointer" />
-                <FaTrash className="text-[#F48F0F] cursor-pointer" />
+                <FaEdit
+                  className="text-[#F48F0F] cursor-pointer"
+                  onClick={() => navigate(`/Admin/Edit-Event/${event.event_id}`)}
+                />
+                <FaTrash
+                  className="text-[#F48F0F] cursor-pointer ml-4"
+                  onClick={() => confirmDelete(event.event_id)}
+                />
               </>
             ),
           }))}
-          visibleCols={visibleColumns}
+          visibleCols={visibleCols}
         />
+
+        {/* Delete Confirmation Modal */}
+        {deleteId && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl p-6 w-[90%] max-w-sm shadow-xl space-y-4">
+              <h2 className="text-lg font-semibold text-gray-800">Delete Event</h2>
+              <p className="text-sm text-gray-600">Are you sure you want to delete this event?</p>
+              <div className="flex justify-end gap-3">
+                <button
+                  onClick={cancelDelete}
+                  className="px-4 py-1 border border-gray-300 rounded hover:bg-gray-100"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteConfirmed}
+                  className="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </SidebarLayout>
   );
