@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Back from "../../UI/Back_button/Back";
+import { useNavigate } from "react-router-dom";
 
 const MembershipForm = () => {
+  const navigate = useNavigate(); 
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -11,19 +13,48 @@ const MembershipForm = () => {
     dob: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const validate = () => {
+    
+    const newErrors = {};
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (!form.name.trim()) newErrors.name = "Name is required.";
+    if (!form.email || !emailRegex.test(form.email))
+      newErrors.email = "Valid email is required.";
+    if (!form.mobileCode.trim()) newErrors.mobileCode = "Code is required.";
+    if (!form.mobileNumber || !phoneRegex.test(form.mobileNumber))
+      newErrors.mobileNumber = "Enter a valid 10-digit number.";
+    if (!form.gender) newErrors.gender = "Please select gender.";
+    if (!form.dob) newErrors.dob = "Date of birth is required.";
+
+    return newErrors;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     alert("Membership form submitted!");
-    // Add actual form submission logic here
+    navigate(-1);
+    // Add actual submission logic here
   };
 
   return (
+    
     <>
-      <div className=" bg-[#FDF8F3] items-left justify-left ">
+      <div className="bg-[#FDF8F3] items-left justify-left">
         <Back />
       </div>
       <div className="min-h-fill bg-[#FDF8F3] flex flex-col items-center justify-center px-4 pb-10">
@@ -48,9 +79,11 @@ const MembershipForm = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F48F0F]"
             />
+            {errors.name && (
+              <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -63,9 +96,11 @@ const MembershipForm = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F48F0F]"
             />
+            {errors.email && (
+              <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Mobile */}
@@ -80,7 +115,6 @@ const MembershipForm = () => {
                 placeholder="+91"
                 value={form.mobileCode}
                 onChange={handleChange}
-                required
                 className="w-1/4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F48F0F]"
               />
               <input
@@ -88,10 +122,15 @@ const MembershipForm = () => {
                 name="mobileNumber"
                 value={form.mobileNumber}
                 onChange={handleChange}
-                required
                 className="w-3/4 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F48F0F]"
               />
             </div>
+            {errors.mobileCode && (
+              <p className="text-sm text-red-500 mt-1">{errors.mobileCode}</p>
+            )}
+            {errors.mobileNumber && (
+              <p className="text-sm text-red-500 mt-1">{errors.mobileNumber}</p>
+            )}
           </div>
 
           {/* Gender */}
@@ -106,6 +145,7 @@ const MembershipForm = () => {
                   name="gender"
                   value="male"
                   onChange={handleChange}
+                  checked={form.gender === "male"}
                   className="mr-2"
                 />
                 Male
@@ -116,11 +156,15 @@ const MembershipForm = () => {
                   name="gender"
                   value="female"
                   onChange={handleChange}
+                  checked={form.gender === "female"}
                   className="mr-2"
                 />
                 Female
               </label>
             </div>
+            {errors.gender && (
+              <p className="text-sm text-red-500 mt-1">{errors.gender}</p>
+            )}
           </div>
 
           {/* Date of Birth */}
@@ -133,9 +177,12 @@ const MembershipForm = () => {
               name="dob"
               value={form.dob}
               onChange={handleChange}
-              required
+              max={new Date().toISOString().split("T")[0]}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F48F0F]"
             />
+            {errors.dob && (
+              <p className="text-sm text-red-500 mt-1">{errors.dob}</p>
+            )}
           </div>
 
           {/* Submit Button */}
