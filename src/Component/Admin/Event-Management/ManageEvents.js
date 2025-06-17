@@ -4,7 +4,7 @@ import { FaSearch, FaEdit, FaTrash, FaFilter, FaCog } from "react-icons/fa";
 import SidebarLayout from "../reusable/SidebarLayout";
 import CustomTable from "../reusable/CustomTable";
 import events from "../../../assets/eventsarray";
-import DeleteConfirmation from "../../UI/DeleteModel/DeleteConfirmation";
+import DeleteConfirmation from "../reusable/DeleteConfirmation";
 
 const ManageEvents = () => {
   const navigate = useNavigate();
