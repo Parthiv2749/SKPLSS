@@ -4,16 +4,16 @@ import HomePage from "../../Component/Pages/HomePage/HomePage";
 import AboutAs from "../../Component/Pages/AboutAs/AboutAs";
 import EventsSection from "../../Component/Pages/Event/Event";
 import Gallary from "../../Component/Pages/Gallary/Gallary";
-import Dashboard from "../../Component/Admin/Dashboard";
-import Login from "../../Component/Admin/Login";
-import Event from "../../Component/Admin/ManageEvents";
-import Managegallery from "../../Component/Admin/Managegallery";
-import ManageMembers from "../../Component/Admin/ManageMembers";
+import Dashboard from "../../Component/Admin/Dashboard/Dashboard";
+import Login from "../../Component/Admin/reusable/Login";
+import Event from "../../Component/Admin/Event-Management/ManageEvents";
+import Managegallery from "../../Component/Admin/Gallery-Management/Managegallery";
+import ManageMembers from "../../Component/Admin/Member-Management/ManageMembers";
 import GalleryEvent from "../../Component/Pages/Gallary/GalleryEvent";
 import Education from "../../Component/Pages/Education/Education";
 import MembershipForm from "../../Component/Pages/Membership/MembershipForm";
-import EventForm from "../../Component/Admin/Eventform";
-import ManagePhotos from "../../Component/Admin/ManagePhotos";
+import EventForm from "../../Component/Admin/Event-Management/Eventform";
+import ManagePhotos from "../../Component/Admin/Gallery-Management/ManagePhotos";
 
 function RouteMmgmt() {
   return (

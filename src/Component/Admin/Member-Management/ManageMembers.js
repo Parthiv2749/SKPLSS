@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaSearch, FaEdit, FaTrash, FaFilter, FaCog } from "react-icons/fa";
-import SidebarLayout from "./SidebarLayout";
-import CustomTable from "./reusable/CustomTable";
-import Members from "../../assets/MembersArray";
+import SidebarLayout from "../reusable/SidebarLayout";
+import CustomTable from "../reusable/CustomTable";
+import Members from "../../../assets/MembersArray";
 
 const ManageMembers = () => {
   const [members] = useState(Members);

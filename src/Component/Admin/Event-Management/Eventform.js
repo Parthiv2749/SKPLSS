@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import SidebarLayout from "./SidebarLayout";
+import SidebarLayout from "../reusable/SidebarLayout";
 import { useNavigate, useParams } from "react-router-dom";
-import events from "../../assets/eventsarray";
+import events from "../../../assets/eventsarray";
 
 const EventForm = () => {
   const navigate = useNavigate();

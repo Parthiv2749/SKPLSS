@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import PhotoGridDisplay from "../UI/PhotoGrid/PhotoGridDisplay";
-import events from "../../assets/eventsarray";
-import SidebarLayout from "./SidebarLayout";
+import PhotoGridDisplay from "../../UI/PhotoGrid/PhotoGridDisplay";
+import events from "../../../assets/eventsarray";
+import SidebarLayout from "../reusable/SidebarLayout";
 
 const ManagePhotos = () => {
   const { Id } = useParams();

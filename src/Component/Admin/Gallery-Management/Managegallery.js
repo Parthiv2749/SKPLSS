@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaEdit, FaTrash, FaFilter, FaCog } from "react-icons/fa";
-import SidebarLayout from "./SidebarLayout";
-import CustomTable from "./reusable/CustomTable";
-import events from "../../assets/eventsarray";
-import DeleteConfirmation from "../UI/DeleteModel/DeleteConfirmation";
+import SidebarLayout from "../reusable/SidebarLayout";
+import CustomTable from "../reusable/CustomTable";
+import events from "../../../assets/eventsarray";
+import DeleteConfirmation from "../../UI/DeleteModel/DeleteConfirmation";
 
 const ManageEvents = () => {
   const navigate = useNavigate();
@@ -81,15 +81,7 @@ const ManageEvents = () => {
     <SidebarLayout>
       <div className="w-full bg-[#FDF8F3] p-6 relative">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold">Event Management</h1>
-          <button
-            onClick={() =>
-              navigate(`/Admin/Schedule-Event/${events.length + 1}`)
-            }
-            className="bg-[#F48F0F] text-white md:px-4 px-2 py-2 rounded-xl hover:opacity-90"
-          >
-            Schedule a new event
-          </button>
+          <h1 className="text-2xl font-semibold">Gallery Management</h1>
         </div>
 
         {/* Search and Icon Controls */}
@@ -214,7 +206,6 @@ const ManageEvents = () => {
             { key: "title", label: "Event Name" },
             { key: "fromDate", label: "From" },
             { key: "toDate", label: "To" },
-            { key: "type", label: "Category" },
             { key: "status", label: "Status" },
           ]}
           rows={filteredEvents.map((event) => ({
@@ -224,7 +215,7 @@ const ManageEvents = () => {
                 <FaEdit
                   className="text-[#F48F0F] cursor-pointer"
                   onClick={() =>
-                    navigate(`/Admin/Edit-Event/${event.event_id}`)
+                    navigate(`/Admin/Edit-Gallery/${event.event_id}`)
                   }
                 />
                 <FaTrash
