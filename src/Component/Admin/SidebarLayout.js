@@ -76,7 +76,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Image />}
               label="Gallery"
-              to="/Admin/gallery"
+              to="/Admin/Gallery"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}

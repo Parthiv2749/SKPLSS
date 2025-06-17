@@ -1,15 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  FaSearch,
-  FaEdit,
-  FaTrash,
-  FaFilter,
-  FaCog,
-} from "react-icons/fa";
+import { FaSearch, FaEdit, FaTrash, FaFilter, FaCog } from "react-icons/fa";
 import SidebarLayout from "./SidebarLayout";
 import CustomTable from "./reusable/CustomTable";
 import events from "../../assets/eventsarray";
+import DeleteConfirmation from "../UI/DeleteModel/DeleteConfirmation";
 
 const ManageEvents = () => {
   const navigate = useNavigate();
@@ -65,7 +60,9 @@ const ManageEvents = () => {
   };
 
   const filteredEvents = eventData.filter((event) => {
-    const matchTitle = event.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchTitle = event.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const matchStatus = filters.status ? event.status === filters.status : true;
     const matchType = filters.type ? event.type === filters.type : true;
 
@@ -86,7 +83,9 @@ const ManageEvents = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold">Event Management</h1>
           <button
-            onClick={() => navigate(`/Admin/Schedule-Event/${events.length + 1}`)}
+            onClick={() =>
+              navigate(`/Admin/Schedule-Event/${events.length + 1}`)
+            }
             className="bg-[#F48F0F] text-white md:px-4 px-2 py-2 rounded-xl hover:opacity-90"
           >
             Schedule a new event
@@ -116,44 +115,62 @@ const ManageEvents = () => {
               {showFilters && (
                 <div className="absolute top-10 right-0 bg-white shadow-lg rounded-md p-4 z-20 w-72 max-w-[90vw] border border-gray-200 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Status</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Status
+                    </label>
                     <select
                       className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.status}
-                      onChange={(e) => setFilters({ ...filters, status: e.target.value })}
+                      onChange={(e) =>
+                        setFilters({ ...filters, status: e.target.value })
+                      }
                     >
                       <option value="">All</option>
                       {statusOptions.map((s, i) => (
-                        <option key={i} value={s}>{s}</option>
+                        <option key={i} value={s}>
+                          {s}
+                        </option>
                       ))}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Date Range</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Date Range
+                    </label>
                     <input
                       type="date"
                       className="w-full border px-2 py-1 rounded text-sm mb-1"
                       value={filters.fromDate}
-                      onChange={(e) => setFilters({ ...filters, fromDate: e.target.value })}
+                      onChange={(e) =>
+                        setFilters({ ...filters, fromDate: e.target.value })
+                      }
                     />
                     <h2 className="text-center text-sm">to</h2>
                     <input
                       type="date"
                       className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.toDate}
-                      onChange={(e) => setFilters({ ...filters, toDate: e.target.value })}
+                      onChange={(e) =>
+                        setFilters({ ...filters, toDate: e.target.value })
+                      }
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Category</label>
+                    <label className="block text-sm font-medium mb-1">
+                      Category
+                    </label>
                     <select
                       className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.type}
-                      onChange={(e) => setFilters({ ...filters, type: e.target.value })}
+                      onChange={(e) =>
+                        setFilters({ ...filters, type: e.target.value })
+                      }
                     >
                       <option value="">All</option>
                       {typeOptions.map((t, i) => (
-                        <option key={i} value={t}>{t}</option>
+                        <option key={i} value={t}>
+                          {t}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -175,7 +192,10 @@ const ManageEvents = () => {
                         type="checkbox"
                         checked={visibleCols[key]}
                         onChange={() =>
-                          setVisibleCols({ ...visibleCols, [key]: !visibleCols[key] })
+                          setVisibleCols({
+                            ...visibleCols,
+                            [key]: !visibleCols[key],
+                          })
                         }
                         className="mr-2"
                       />
@@ -192,7 +212,8 @@ const ManageEvents = () => {
         <CustomTable
           cols={[
             { key: "title", label: "Event Name" },
-            { key: "date", label: "Date" },
+            { key: "fromDate", label: "From" },
+            { key: "toDate", label: "To" },
             { key: "type", label: "Category" },
             { key: "status", label: "Status" },
           ]}
@@ -202,7 +223,9 @@ const ManageEvents = () => {
               <>
                 <FaEdit
                   className="text-[#F48F0F] cursor-pointer"
-                  onClick={() => navigate(`/Admin/Edit-Event/${event.event_id}`)}
+                  onClick={() =>
+                    navigate(`/Admin/Edit-Event/${event.event_id}`)
+                  }
                 />
                 <FaTrash
                   className="text-[#F48F0F] cursor-pointer ml-4"
@@ -216,26 +239,12 @@ const ManageEvents = () => {
 
         {/* Delete Confirmation Modal */}
         {deleteId && (
-          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-            <div className="bg-white rounded-xl p-6 w-[90%] max-w-sm shadow-xl space-y-4">
-              <h2 className="text-lg font-semibold text-gray-800">Delete Event</h2>
-              <p className="text-sm text-gray-600">Are you sure you want to delete this event?</p>
-              <div className="flex justify-end gap-3">
-                <button
-                  onClick={cancelDelete}
-                  className="px-4 py-1 border border-gray-300 rounded hover:bg-gray-100"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleDeleteConfirmed}
-                  className="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
+          <DeleteConfirmation
+            onCancel={cancelDelete}
+            onConfirm={handleDeleteConfirmed}
+            title="Delete Event"
+            message="Are you sure you want to delete this event?"
+          />
         )}
       </div>
     </SidebarLayout>

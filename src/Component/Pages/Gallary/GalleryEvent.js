@@ -5,6 +5,8 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import Back from "../../UI/Back_button/Back";
 import LoadingSpinner from "../../UI/LoadingSpiner/LoadingSpinner";
+import PhotoGridDisplay from "../../UI/PhotoGrid/PhotoGridDisplay"
+
 
 const GalleryEvent = () => {
   const { Id } = useParams();
@@ -37,20 +39,13 @@ const GalleryEvent = () => {
         {eventData.description}
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt={`Photo ${index + 1}`}
-            onClick={() => {
-              setPhotoIndex(index);
-              setIsOpen(true);
-            }}
-            className="rounded-xl shadow hover:scale-105 transition duration-300 object-cover w-full h-auto cursor-pointer"
-          />
-        ))}
-      </div>
+      <PhotoGridDisplay
+        images={images}
+        onImageClick={(index) => {
+          setPhotoIndex(index);
+          setIsOpen(true);
+        }}
+      />
 
       {isOpen && (
         <Lightbox

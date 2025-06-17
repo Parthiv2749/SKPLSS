@@ -13,6 +13,7 @@ import GalleryEvent from "../../Component/Pages/Gallary/GalleryEvent";
 import Education from "../../Component/Pages/Education/Education";
 import MembershipForm from "../../Component/Pages/Membership/MembershipForm";
 import EventForm from "../../Component/Admin/Eventform";
+import ManagePhotos from "../../Component/Admin/ManagePhotos";
 
 function RouteMmgmt() {
   return (
@@ -30,9 +31,10 @@ function RouteMmgmt() {
         <Route path="/AdminLogin" element={<Login />} />
         <Route path="/Admin" element={<Dashboard />} />
         <Route path="/Admin/events" element={<Event />} />
-        <Route path="/Admin/gallery" element={<Managegallery />} />
+        <Route path="/Admin/Gallery" element={<Managegallery />} />
         <Route path="/Admin/Members" element={<ManageMembers />} />
         <Route path="Admin/:Type/:Id" element={<EventForm />} />
+        <Route path="/Admin/Edit-Gallery/:Id" element={<ManagePhotos />} />
       </Routes>
     </BrowserRouter>
   );
