@@ -84,7 +84,7 @@ const SidebarLayout = ({ children }) => {
             <SidebarLink
               icon={<Users />}
               label="Members"
-              to="/Admin/members"
+              to="/Admin/Members"
               collapsed={isCollapsed && !isMobile}
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}

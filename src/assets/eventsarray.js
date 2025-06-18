@@ -64,7 +64,7 @@
       description: "Showcase your talent and creativity.",
       fromDate: "2025-04-05",
       toDate: "2025-04-07",
-      type: "Cultural",
+      type: "Events",
       image: img3,
       FolderPath: "/gallery/navratri/",
       photoCount: 6,
