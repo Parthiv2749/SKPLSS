@@ -14,6 +14,8 @@ import Education from "../../Component/Pages/Education/Education";
 import MembershipForm from "../../Component/Pages/Membership/MembershipForm";
 import EventForm from "../../Component/Admin/Event-Management/Eventform";
 import ManagePhotos from "../../Component/Admin/Gallery-Management/ManagePhotos";
+import Settings from "../../Component/Admin/Settings/Settings";
+import ManageCategories from "../../Component/Admin/Event-Management/ManageCategories";
 
 function RouteMmgmt() {
   return (
@@ -31,10 +33,13 @@ function RouteMmgmt() {
         <Route path="/AdminLogin" element={<Login />} />
         <Route path="/Admin" element={<Dashboard />} />
         <Route path="/Admin/events" element={<Event />} />
+        <Route path="/Admin/events/Manage_Categories" element={<ManageCategories />} />
         <Route path="/Admin/Gallery" element={<Managegallery />} />
         <Route path="/Admin/Members" element={<ManageMembers />} />
         <Route path="Admin/:Type/:Id" element={<EventForm />} />
         <Route path="/Admin/Edit-Gallery/:Id" element={<ManagePhotos />} />
+        <Route path="/Admin/Settings" element={<Settings />} />
+        
       </Routes>
     </BrowserRouter>
   );

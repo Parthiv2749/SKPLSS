@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Calendar, Image, Users, Menu, X } from "lucide-react";
+import {
+  Home,
+  Calendar,
+  Image,
+  Users,
+  Menu,
+  X,
+  Settings as SettingsIcon,
+} from "lucide-react";
 import Topbar from "./Topbar";
+
+const currentUser = { id: 1, name: "Yagnik", role: "admin" }; // Replace with auth context later
 
 const SidebarLayout = ({ children }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
-  
 
   useEffect(() => {
     const handleResize = () => {
@@ -89,6 +98,16 @@ const SidebarLayout = ({ children }) => {
               isMobile={isMobile}
               setIsCollapsed={setIsCollapsed}
             />
+            {currentUser.role === "admin" && (
+              <SidebarLink
+                icon={<SettingsIcon />}
+                label="Settings"
+                to="/Admin/settings"
+                collapsed={isCollapsed && !isMobile}
+                isMobile={isMobile}
+                setIsCollapsed={setIsCollapsed}
+              />
+            )}
           </nav>
         </div>
 
@@ -99,7 +118,14 @@ const SidebarLayout = ({ children }) => {
   );
 };
 
-const SidebarLink = ({ icon, label, to, collapsed, isMobile, setIsCollapsed }) => {
+const SidebarLink = ({
+  icon,
+  label,
+  to,
+  collapsed,
+  isMobile,
+  setIsCollapsed,
+}) => {
   const location = useLocation();
   const isActive = location.pathname === to;
 

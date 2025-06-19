@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import SidebarLayout from "../reusable/SidebarLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import events from "../../../assets/eventsarray";
+import categories from "../../../assets/EventCategories";
 
 const EventForm = () => {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ const EventForm = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [errors, setErrors] = useState({});
   const fileInputRef = useRef(null);
-  
 
   // Determine Edit Mode and Pre-fill Data
   useEffect(() => {
@@ -160,7 +160,9 @@ const EventForm = () => {
             <input
               type="text"
               value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
               className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md bg-white"
             />
           )}
@@ -228,12 +230,11 @@ const EventForm = () => {
                 errors.category ? "border-red-500" : "border-gray-300"
               } rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400`}
             >
-              <option value="">Select category</option>
-              <option value="Youth">Youth</option>
-              <option value="Events">Events</option>
-              <option value="Cultural">Cultural</option>
-              <option value="Com_service">Com_service</option>
-              <option value="Other">Other</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
             </select>
             {errors.category && (
               <p className="text-red-500 text-sm">{errors.category}</p>

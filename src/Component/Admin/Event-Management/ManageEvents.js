@@ -13,7 +13,7 @@ const ManageEvents = () => {
   const [visibleCols, setVisibleCols] = useState({
     title: true,
     date: true,
-    type: true,
+    category: true,
     status: true,
   });
 
@@ -21,7 +21,7 @@ const ManageEvents = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
     status: "",
-    type: "",
+    category: "",
     fromDate: "",
     toDate: "",
   });
@@ -64,32 +64,42 @@ const ManageEvents = () => {
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchStatus = filters.status ? event.status === filters.status : true;
-    const matchType = filters.type ? event.type === filters.type : true;
+    const matchcategory = filters.category
+      ? event.category === filters.category
+      : true;
 
     const eventDate = new Date(event.date);
     const from = filters.fromDate ? new Date(filters.fromDate) : null;
     const to = filters.toDate ? new Date(filters.toDate) : null;
     const matchDate = (!from || eventDate >= from) && (!to || eventDate <= to);
 
-    return matchTitle && matchStatus && matchType && matchDate;
+    return matchTitle && matchStatus && matchcategory && matchDate;
   });
 
   const statusOptions = [...new Set(events.map((e) => e.status))];
-  const typeOptions = [...new Set(events.map((e) => e.type))];
+  const categoryOptions = [...new Set(events.map((e) => e.category))];
 
   return (
     <SidebarLayout>
       <div className="w-full bg-[#FDF8F3] p-6 relative">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-semibold">Event Management</h1>
-          <button
-            onClick={() =>
-              navigate(`/Admin/Schedule-Event/${events.length + 1}`)
-            }
-            className="bg-[#F48F0F] text-white md:px-4 px-2 py-2 rounded-xl hover:opacity-90"
-          >
-            Schedule a new event
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => navigate("/Admin/events/Manage_Categories")}
+              className="bg-gray-300 text-gray-800 md:px-4 px-2 py-2 rounded-xl hover:bg-[#F48F0F] hover:opacity-90 hover:text-white text-sm"
+            >
+              Manage Categories
+            </button>
+            <button
+              onClick={() =>
+                navigate(`/Admin/Schedule-Event/${events.length + 1}`)
+              }
+              className="bg-[#F48F0F] text-white md:px-4 px-2 py-2 rounded-xl hover:opacity-90 text-sm"
+            >
+              Schedule a New Event
+            </button>
+          </div>
         </div>
 
         {/* Search and Icon Controls */}
@@ -97,7 +107,7 @@ const ManageEvents = () => {
           <div className="flex items-center bg-white rounded-full px-4 py-2 border border-gray-300 w-full sm:max-w-md">
             <FaSearch className="text-gray-400 mr-2" />
             <input
-              type="text"
+              category="text"
               placeholder="Search by Event Name"
               className="outline-none w-full text-sm"
               value={searchTerm}
@@ -138,7 +148,7 @@ const ManageEvents = () => {
                       Date Range
                     </label>
                     <input
-                      type="date"
+                      category="date"
                       className="w-full border px-2 py-1 rounded text-sm mb-1"
                       value={filters.fromDate}
                       onChange={(e) =>
@@ -147,7 +157,7 @@ const ManageEvents = () => {
                     />
                     <h2 className="text-center text-sm">to</h2>
                     <input
-                      type="date"
+                      category="date"
                       className="w-full border px-2 py-1 rounded text-sm"
                       value={filters.toDate}
                       onChange={(e) =>
@@ -161,13 +171,13 @@ const ManageEvents = () => {
                     </label>
                     <select
                       className="w-full border px-2 py-1 rounded text-sm"
-                      value={filters.type}
+                      value={filters.category}
                       onChange={(e) =>
-                        setFilters({ ...filters, type: e.target.value })
+                        setFilters({ ...filters, category: e.target.value })
                       }
                     >
                       <option value="">All</option>
-                      {typeOptions.map((t, i) => (
+                      {categoryOptions.map((t, i) => (
                         <option key={i} value={t}>
                           {t}
                         </option>
@@ -189,7 +199,7 @@ const ManageEvents = () => {
                   {Object.keys(visibleCols).map((key) => (
                     <label key={key} className="block text-sm mb-2">
                       <input
-                        type="checkbox"
+                        category="checkbox"
                         checked={visibleCols[key]}
                         onChange={() =>
                           setVisibleCols({
@@ -214,7 +224,7 @@ const ManageEvents = () => {
             { key: "title", label: "Event Name" },
             { key: "fromDate", label: "From" },
             { key: "toDate", label: "To" },
-            { key: "type", label: "Category" },
+            { key: "category", label: "Category" },
             { key: "status", label: "Status" },
           ]}
           rows={filteredEvents.map((event) => ({
