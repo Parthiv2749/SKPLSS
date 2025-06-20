@@ -1,14 +1,15 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Footer from '../../UI/Footer/Footer';
-import events from '../../../assets/eventsarray';
-import Back from '../../UI/Back_button/Back';
-import LoadingSpinner from '../../UI/LoadingSpiner/LoadingSpinner';
+import React, { useState, useMemo, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../UI/Footer/Footer";
+import events from "../../../assets/eventsarray";
+import Back from "../../UI/Back_button/Back";
+import LoadingSpinner from "../../UI/LoadingSpiner/LoadingSpinner";
+import ContactModal from "../../UI/ContactModal/ContactModal"; // 👈 You need to create this modal
 
 const statusClasses = {
-  upcoming: 'bg-blue-100 text-blue-500',
-  completed: 'bg-orange-100 text-orange-500',
-  ongoing: 'bg-yellow-100 text-yellow-600',
+  upcoming: "bg-blue-100 text-blue-500",
+  completed: "bg-orange-100 text-orange-500",
+  ongoing: "bg-yellow-100 text-yellow-600",
 };
 
 const ITEMS_PER_PAGE = 6;
@@ -17,43 +18,34 @@ function getPageNumbers(currentPage, totalPages) {
   if (totalPages <= 4) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
-
   const pages = [];
-
   if (currentPage > 2) pages.push(1);
-  if (currentPage > 3) pages.push('left-ellipsis');
-
+  if (currentPage > 3) pages.push("left-ellipsis");
   const start = Math.max(1, currentPage - 1);
   const end = Math.min(totalPages, currentPage + 1);
-
-  for (let i = start; i <= end; i++) {
-    pages.push(i);
-  }
-
-  if (currentPage < totalPages - 2) pages.push('right-ellipsis');
+  for (let i = start; i <= end; i++) pages.push(i);
+  if (currentPage < totalPages - 2) pages.push("right-ellipsis");
   if (currentPage < totalPages - 1) pages.push(totalPages);
-
   return pages;
 }
-
-
 
 const EventsPage = () => {
   const navigate = useNavigate();
 
-  const [filter, setFilter] = useState('All');
-  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState("All");
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedEventTitle, setSelectedEventTitle] = useState("");
 
-  // Filter and search events
   const filteredEvents = useMemo(() => {
     const term = search.toLowerCase();
     return events.filter((ev) => {
-      if (filter === 'Upcoming' && ev.status !== 'upcoming') return false;
-      if (filter === 'Past' && ev.status !== 'completed') return false;
-
+      if (filter === "Upcoming" && ev.status !== "Upcoming") return false;
+      if (filter === "Past" && ev.status !== "Past") return false;
+      if (filter === "Ongoing" && ev.status !== "Ongoing") return false;
       if (
         term &&
         !(
@@ -62,7 +54,6 @@ const EventsPage = () => {
         )
       )
         return false;
-
       return true;
     });
   }, [filter, search]);
@@ -75,23 +66,29 @@ const EventsPage = () => {
 
   const pageNumbers = getPageNumbers(page, totalPages);
 
-  // When filter/search/page changes, simulate loading & fade
   useEffect(() => {
     setLoading(true);
     setFadeIn(false);
-
     const timer = setTimeout(() => {
       setLoading(false);
       setFadeIn(true);
-    }, 300); // short delay to simulate loading & allow fade-in
-
+    }, 300);
     return () => clearTimeout(timer);
   }, [filter, search, page]);
 
-  // Reset page on filter/search change
   useEffect(() => {
     setPage(1);
   }, [filter, search]);
+
+  const handleEventClick = (event) => {
+    if (event.status === "Past" || event.status === "Ongoing") {
+      const encodedTitle = encodeURIComponent(event.title.replace(/\s+/g, "_"));
+      navigate(`/Gallery/${event.id}/${encodedTitle}`);
+    } else if (event.status === "Upcoming") {
+      setSelectedEventTitle(event.title);
+      setModalOpen(true);
+    }
+  };
 
   return (
     <>
@@ -115,14 +112,14 @@ const EventsPage = () => {
               aria-label="Search events"
             />
             <div className="flex gap-3">
-              {['All', 'Upcoming', 'Past'].map((label) => (
+              {["All", "Upcoming", "Past", "Ongoing"].map((label) => (
                 <button
                   key={label}
                   onClick={() => setFilter(label)}
                   className={`px-4 py-2 rounded-full text-sm transition ${
                     filter === label
-                      ? 'bg-orange-500 text-white'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? "bg-orange-500 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
                   }`}
                   aria-pressed={filter === label}
                 >
@@ -132,48 +129,42 @@ const EventsPage = () => {
             </div>
           </div>
 
-          {/* Loading spinner or events grid */}
+
           {loading ? (
             <LoadingSpinner />
           ) : pagedEvents.length > 0 ? (
             <div
               className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 transition-opacity duration-500 ${
-                fadeIn ? 'opacity-100' : 'opacity-0'
+                fadeIn ? "opacity-100" : "opacity-0"
               }`}
             >
               {pagedEvents.map((event, idx) => {
                 const StatusTag = (
                   <span
                     className={`px-2 py-0.5 rounded text-xs ${
-                      statusClasses[event.status] || ''
+                      statusClasses[event.status.toLowerCase()] || ""
                     }`}
                   >
-                    {event.status.charAt(0).toUpperCase() +
-                      event.status.slice(1)}
+                    {event.status}
                   </span>
                 );
 
-                const CardContent = (
+                return (
                   <div
+                    key={idx}
                     className="bg-white rounded shadow p-4 text-left cursor-pointer hover:shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
                     style={{
-                      minHeight: '220px',
-                      display: 'flex',
-                      flexDirection: 'column',
+                      minHeight: "220px",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
                     tabIndex={0}
                     role="button"
-                    aria-label={`View details for ${event.title}`}
-                    onClick={() => {
-                      if (event.link) {
-                        window.location.href = event.link;
-                      }
-                    }}
+                    onClick={() => handleEventClick(event)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' && event.link) {
-                        window.location.href = event.link;
-                      }
+                      if (e.key === "Enter") handleEventClick(event);
                     }}
+                    aria-label={`View details for ${event.title}`}
                   >
                     <img
                       src={event.image}
@@ -186,14 +177,12 @@ const EventsPage = () => {
                     </p>
                     <div className="flex justify-between items-center text-xs mt-3">
                       <span className="flex items-center gap-1">
-                        📅 {event.date}
+                        📅 {event.fromDate}
                       </span>
                       {StatusTag}
                     </div>
                   </div>
                 );
-
-                return <div key={idx}>{CardContent}</div>;
               })}
             </div>
           ) : (
@@ -202,7 +191,6 @@ const EventsPage = () => {
             </p>
           )}
 
-          {/* Pagination */}
           {!loading && totalPages > 1 && (
             <div className="mt-10 flex justify-center items-center gap-2 flex-wrap select-none">
               <button
@@ -215,7 +203,7 @@ const EventsPage = () => {
               </button>
 
               {pageNumbers.map((num, idx) => {
-                if (num === 'left-ellipsis' || num === 'right-ellipsis') {
+                if (num === "left-ellipsis" || num === "right-ellipsis") {
                   return (
                     <span key={idx} className="px-3 py-1 select-none">
                       ...
@@ -226,11 +214,11 @@ const EventsPage = () => {
                   <button
                     key={idx}
                     onClick={() => setPage(num)}
-                    aria-current={page === num ? 'page' : undefined}
+                    aria-current={page === num ? "page" : undefined}
                     className={`px-3 py-1 border rounded transition ${
                       page === num
-                        ? 'bg-orange-500 text-white cursor-default'
-                        : 'hover:bg-gray-100'
+                        ? "bg-orange-500 text-white"
+                        : "hover:bg-gray-100"
                     }`}
                   >
                     {num}
@@ -250,6 +238,13 @@ const EventsPage = () => {
           )}
         </section>
       </div>
+
+      <ContactModal
+        isOpen={modalOpen}
+        eventTitle={selectedEventTitle}
+        onClose={() => setModalOpen(false)}
+      />
+
       <Footer />
     </>
   );

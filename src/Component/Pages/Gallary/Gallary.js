@@ -2,28 +2,20 @@ import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "../../UI/Navbar/Navbar";
 import Footer from "../../UI/Footer/Footer";
 import events from "../../../assets/eventsarray";
+import categories from "../../../assets/EventCategories";
 import LoadingSpinner from "../../UI/LoadingSpiner/LoadingSpinner";
 
-function Gallary() {
-  const [categoryFilter, setCategoryFilter] = useState("All");
+function Gallery() {
+  const [categoryFilter, setCategoryFilter] = useState("all");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
 
   const ITEMS_PER_PAGE = 6;
 
-  const categories = [
-    "All",
-    "Youth",
-    "Events",
-    "Cultural",
-    "Com_service",
-    "other",
-  ];
-
   const filteredEvents = useMemo(() => {
-    if (categoryFilter === "All") return events;
-    return events.filter((event) => event.type === categoryFilter);
+    if (categoryFilter === "all") return events;
+    return events.filter((event) => event.category === categoryFilter);
   }, [categoryFilter]);
 
   const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
@@ -57,23 +49,33 @@ function Gallary() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-6">
+          <button
+            onClick={() => setCategoryFilter("all")}
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+              categoryFilter === "all"
+                ? "bg-[#F48F0F] text-white"
+                : "text-black hover:bg-gray-200"
+            }`}
+          >
+            All
+          </button>
           {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setCategoryFilter(cat)}
+              key={cat.id}
+              onClick={() => setCategoryFilter(cat.id)}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                categoryFilter === cat
+                categoryFilter === cat.id
                   ? "bg-[#F48F0F] text-white"
                   : "text-black hover:bg-gray-200"
               }`}
             >
-              {cat}
+              {cat.name}
             </button>
           ))}
         </div>
 
         {loading ? (
-            <LoadingSpinner />
+          <LoadingSpinner />
         ) : (
           <div
             className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500 ${
@@ -91,9 +93,11 @@ function Gallary() {
                   }/${encodeURIComponent(event.title.replace(/\s+/g, "_"))}`)
                 }
                 onKeyDown={(e) => {
-                  if (e.key === "Enter")
-                    window.location.href =
-                      "/Gallery/" + encodeURIComponent(event.title);
+                  if (e.key === "Enter") {
+                    window.location.href = `/Gallery/${
+                      event.event_id
+                    }/${encodeURIComponent(event.title.replace(/\s+/g, "_"))}`;
+                  }
                 }}
                 className="rounded-xl shadow bg-white overflow-hidden hover:shadow-lg transform hover:scale-[1.03] transition duration-300 ease-in-out cursor-pointer"
               >
@@ -150,4 +154,4 @@ function Gallary() {
   );
 }
 
-export default Gallary;
+export default Gallery;
