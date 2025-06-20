@@ -83,7 +83,7 @@ const EventsPage = () => {
   const handleEventClick = (event) => {
     if (event.status === "Past" || event.status === "Ongoing") {
       const encodedTitle = encodeURIComponent(event.title.replace(/\s+/g, "_"));
-      navigate(`/Gallery/${event.id}/${encodedTitle}`);
+      navigate(`/Gallery/${event.event_id}/${encodedTitle}`);
     } else if (event.status === "Upcoming") {
       setSelectedEventTitle(event.title);
       setModalOpen(true);
